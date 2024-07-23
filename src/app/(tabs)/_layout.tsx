@@ -69,7 +69,3 @@ export default function TabsNavigation() {
 		</Tabs>
 	)
 }
-
-// const styles = StyleSheet.create({
-// 	absoluteFillObject: '',
-// })

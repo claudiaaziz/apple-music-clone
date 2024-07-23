@@ -1,11 +1,14 @@
+import TrackList from '@/components/TrackList'
 import { defaultStyles } from '@/styles'
 import React from 'react'
-import { Text, View } from 'react-native'
+import { ScrollView, View } from 'react-native'
 
 export default function SongsScreen() {
 	return (
 		<View style={defaultStyles.container}>
-			<Text style={defaultStyles.text}>Songs Screen</Text>
+			<ScrollView>
+				<TrackList />
+			</ScrollView>
 		</View>
 	)
 }
