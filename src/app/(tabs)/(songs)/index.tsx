@@ -1,5 +1,6 @@
 import library from '@/assets/data/library.json'
 import TrackList from '@/components/TrackList'
+import { screenPadding } from '@/constants/tokens'
 // import { screenPadding } from '@/constants/tokens'
 import { trackTitleFilter } from '@/helpers/filter'
 import useNavigationSearch from '@/hooks/useNavigationSearch'
@@ -21,15 +22,15 @@ export default function SongsScreen() {
 
 	return (
 		<View style={defaultStyles.container}>
-			{/* <ScrollView
+			<ScrollView
 				contentInsetAdjustmentBehavior="automatic"
 				style={{ paddingHorizontal: screenPadding.horizontal }}
-			> */}
+			>
 			<TrackList
 				tracks={filteredTracks}
 				scrollEnabled={false}
 			/>
-			{/* </ScrollView> */}
+			</ScrollView>
 		</View>
 	)
 }

@@ -11,8 +11,6 @@ export default function FloatingPlayer({ style }: ViewProps) {
 	const activeTrack = useActiveTrack()
 	const lastActiveTrack = useLastActiveTrack()
 
-	// if (!activeTrack) return null
-
 	const displayedTrack = activeTrack ?? lastActiveTrack
 
 	if (!displayedTrack) return null

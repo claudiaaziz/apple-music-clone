@@ -18,4 +18,20 @@ export const utilsStyles = StyleSheet.create({
 		borderWidth: StyleSheet.hairlineWidth,
 		opacity: 0.3,
 	},
+	emptyContentContainer: {
+		marginTop: 200,
+	},
+	emptyContentTextNoResults: {
+		...defaultStyles.text,
+		textAlign: 'center',
+		fontWeight: 'bold',
+		fontSize: 26,
+		marginBottom: 10,
+	},
+	emptyContentTextTryANewSearch: {
+		...defaultStyles.text,
+		fontSize: 20,
+		color: colors.textMuted,
+		textAlign: 'center',
+	},
 })
