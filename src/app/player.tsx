@@ -1,8 +1,10 @@
 import MovingText from '@/components/MovingText'
+import PlayerControls from '@/components/PlayerControls'
 import { unknownTrackImageUri } from '@/constants/images'
-import { colors, screenPadding } from '@/constants/tokens'
-import { defaultStyles } from '@/styles'
-import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import { colors, fontSize, screenPadding } from '@/constants/tokens'
+import { defaultStyles, utilsStyles } from '@/styles'
+import { FontAwesome } from '@expo/vector-icons'
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useActiveTrack } from 'react-native-track-player'
@@ -10,6 +12,8 @@ import { useActiveTrack } from 'react-native-track-player'
 export default function PlayerScreen() {
 	const activeTrack = useActiveTrack()
 	const { top, bottom } = useSafeAreaInsets()
+	const isFavorite = false
+	const toggleFavorite = () => {}
 
 	if (!activeTrack) {
 		return (
@@ -45,6 +49,7 @@ export default function PlayerScreen() {
 									alignItems: 'center',
 								}}
 							>
+								{/* track title */}
 								<View style={styles.trackTitleContainer}>
 									<MovingText
 										text={activeTrack.title ?? ''}
@@ -52,8 +57,33 @@ export default function PlayerScreen() {
 										style={styles.trackTitleText}
 									/>
 								</View>
+
+								{/* favorite button */}
+								<FontAwesome
+									name={isFavorite ? 'heart' : 'heart-o'}
+									size={20}
+									color={isFavorite ? colors.primary : colors.icon}
+									style={{ marginHorizontal: 14 }}
+									onPress={toggleFavorite}
+								/>
 							</View>
+
+							{/* artist name */}
+							{activeTrack.artist && (
+								<Text numberOfLines={1} style={[styles.trackArtistText, { marginTop: 6 }]}>
+									{activeTrack.artist}
+								</Text>
+							)}
 						</View>
+
+						<PlayerProgressBar style={{ marginTop: 32 }} />
+						<PlayerControls style={{ marginTop: 40 }} />
+					</View>
+
+					<PlayerVolumeBar style={{ marginTop: 'auto', marginBottom: 30 }} />
+
+					<View style={utilsStyles.centeredRow}>
+						<PlayerRepeatToggle size={30} style={{ marginBottom: 6 }} />
 					</View>
 				</View>
 			</View>
@@ -118,5 +148,11 @@ const styles = StyleSheet.create({
 		...defaultStyles.text,
 		fontSize: 22,
 		fontWeight: '700',
+	},
+	trackArtistText: {
+		...defaultStyles.text,
+		fontSize: fontSize.base,
+		opacity: 0.8,
+		maxWidth: '90%',
 	},
 })
