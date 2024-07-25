@@ -1,5 +1,6 @@
 import MovingText from '@/components/MovingText'
 import PlayerControls from '@/components/PlayerControls'
+import PlayerProgressBar from '@/components/PlayerProgressBar'
 import { unknownTrackImageUri } from '@/constants/images'
 import { colors, fontSize, screenPadding } from '@/constants/tokens'
 import { defaultStyles, utilsStyles } from '@/styles'
