@@ -1,6 +1,7 @@
 import TrackList from '@/components/TrackList'
 import { screenPadding } from '@/constants/tokens'
 import { trackTitleFilter } from '@/helpers/filter'
+import { generateTrackListId } from '@/helpers/miscellaneous'
 import useNavigationSearch from '@/hooks/useNavigationSearch'
 import { useFavorites } from '@/store/library'
 import { defaultStyles } from '@/styles'
@@ -14,12 +15,12 @@ export default function FavoritesScreen() {
 	})
 
 	const favoriteTracks = useFavorites()?.favorites
-    
-    const filteredFavoriteTracks = useMemo(() => {
-        if (!search) return favoriteTracks
 
-        return favoriteTracks.filter(trackTitleFilter(search))
-    }, [search, favoriteTracks])
+	const filteredFavoriteTracks = useMemo(() => {
+		if (!search) return favoriteTracks
+
+		return favoriteTracks.filter(trackTitleFilter(search))
+	}, [search, favoriteTracks])
 
 	return (
 		<View style={defaultStyles.container}>
@@ -27,7 +28,11 @@ export default function FavoritesScreen() {
 				style={{ paddingHorizontal: screenPadding.horizontal }}
 				contentInsetAdjustmentBehavior="automatic"
 			>
-				<TrackList scrollEnabled={false} tracks={filteredFavoriteTracks} />
+				<TrackList
+					id={generateTrackListId('favorites', search)}
+					tracks={filteredFavoriteTracks}
+					scrollEnabled={false}
+				/>
 			</ScrollView>
 		</View>
 	)
