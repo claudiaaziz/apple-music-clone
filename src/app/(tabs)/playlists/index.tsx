@@ -1,3 +1,4 @@
+import PlaylistList from '@/components/PlaylistList'
 import { screenPadding } from '@/constants/tokens'
 import { playlistNameFilter } from '@/helpers/filter'
 import { Playlist } from '@/helpers/types'
@@ -18,7 +19,6 @@ export default function PlaylistsScreen() {
 	})
 
 	const { playlists } = usePlaylists()
-	console.log('PlaylistsScreen 🩷 playlists:', playlists)
 
 	const filteredPlaylists = useMemo(() => {
 		return playlists.filter(playlistNameFilter(search))
