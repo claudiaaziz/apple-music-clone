@@ -43,4 +43,11 @@ export const utilsStyles = StyleSheet.create({
 		color: colors.textMuted,
 		textAlign: 'center',
 	},
+	emptyContentImage: {
+		width: 200,
+		height: 200,
+		alignSelf: 'center',
+		marginTop: 40,
+		opacity: 0.3,
+	},
 })
