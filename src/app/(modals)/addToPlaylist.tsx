@@ -14,16 +14,16 @@ export default function AddToPlaylistModal() {
 	const router = useRouter()
 	const headerHeight = useHeaderHeight()
 
-	const trackUrl = useLocalSearchParams<{ trackUrl: Track['url'] }>()
+	const { trackUrl } = useLocalSearchParams<{ trackUrl: Track['url'] }>()
 	const tracks = useTracks()
 	const { playlists, addToPlaylist } = usePlaylists()
 	const track = tracks.find((currTrack) => currTrack.url === trackUrl)
 	const { activeQueueId } = useQueue()
 
-	if (!track) return null
+	if (!track) return
 
 	const availablePlaylists = playlists.filter((playlist) =>
-		playlist.tracks.some((playlistTrack) => playlistTrack.url === track.url),
+		playlist.tracks.every((playlistTrack) => playlistTrack.url !== track.url),
 	)
 
 	const handlePlaylistPress = async (playlist: Playlist) => {
