@@ -18,7 +18,7 @@ export const useLibraryStore = create<LibraryState>()((set) => ({
 				if (currTrack.url === track.url) {
 					return {
 						...currTrack,
-						favorite: !currTrack.favorite,
+						rating: currTrack.rating === 1 ? 0 : 1,
 					}
 				}
 
@@ -43,7 +43,7 @@ export const useLibraryStore = create<LibraryState>()((set) => ({
 export const useTracks = () => useLibraryStore((state) => state.tracks)
 
 export const useFavorites = () => {
-	const favorites = useLibraryStore((state) => state.tracks.filter((track) => track.favorite))
+	const favorites = useLibraryStore((state) => state.tracks.filter((track) => track.rating === 1))
 	const toggleTrackFavorite = useLibraryStore((state) => state.toggleTrackFavorite)
 
 	return {

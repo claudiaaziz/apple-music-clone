@@ -11,7 +11,7 @@ type TrackShortcutsMenuProps = PropsWithChildren<{ track: Track }>
 export default function TrackShortcutsMenu({ track, children }: TrackShortcutsMenuProps) {
 	const router = useRouter()
 
-	const isFavorite = track.favorite
+	const isFavorite = track.rating === 1
 
 	const { activeQueueId } = useQueue()
 	const { toggleTrackFavorite } = useFavorites()
