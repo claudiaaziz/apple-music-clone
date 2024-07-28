@@ -1,8 +1,9 @@
+import TrackShortcutsMenu from '@/components/TrackShortcutsMenu'
+import StopPropogation from '@/components/utils/StopPropogation'
 import { unknownArtistImageUri } from '@/constants/images'
 import { colors, fontSize } from '@/constants/tokens'
 import { defaultStyles } from '@/styles'
 import { Entypo, Ionicons } from '@expo/vector-icons'
-import React from 'react'
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import LoaderKit from 'react-native-loader-kit'
@@ -64,8 +65,11 @@ export default function TrackListItem({ track, handleTrackSelect }: TrackListIte
 							</Text>
 						)}
 					</View>
-
-					<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
+					<StopPropogation>
+						<TrackShortcutsMenu track={track}>
+							<Entypo name="dots-three-horizontal" size={18} color={colors.icon} />
+						</TrackShortcutsMenu>
+					</StopPropogation>
 				</View>
 			</View>
 		</TouchableHighlight>
